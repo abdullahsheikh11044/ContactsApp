@@ -7,7 +7,20 @@ const Dashboard = () => {
   return (
     <div className="container d-flex justify-content-center">
       <p>dashboard</p>
-      <Button onClick={() => {navigate("/login")}}>Login</Button>
+      <Button
+        onClick={() => {
+          navigate("/register");
+        }}
+      >
+        Register
+      </Button>
+      <Button
+        onClick={() => {
+          navigate("/login");
+        }}
+      >
+        Login
+      </Button>
     </div>
   );
 };

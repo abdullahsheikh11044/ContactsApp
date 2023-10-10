@@ -14,10 +14,11 @@ const Login = () => {
     try {
       const response = await login(values).unwrap();
       if (response.access) {
+        console.log(response.access);
         localStorage.setItem("email", values.email);
         dispatch(setCredentials(response));
-        navigate(profileSetupRoute);
       }
+      navigate("/users");
     } catch (response) {}
   };
   return (

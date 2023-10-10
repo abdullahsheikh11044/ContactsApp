@@ -10,7 +10,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
         body: { ...credentials },
       }),
       transformResponse: (response) => ({
-        access: response.access,
+        access: response.accessToken,
         // refresh: response.refresh,
       }),
       transformErrorResponse: (response) => ({
@@ -19,7 +19,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
     }),
     signup: builder.mutation({
       query: (body) => ({
-        url: "/signup",
+        url: "/register",
         method: "POST",
         body: { ...body },
       }),
@@ -33,6 +33,23 @@ export const authApiSlice = apiSlice.injectEndpoints({
         error: response.data,
         message: response.data?.message,
       }),
+    }),
+    current: builder.query({
+      query: () => ({
+        url: "/current",
+        method: "GET",
+      }),
+      transformResponse: (response) => console.log(response),
+      //   ({
+      //     message: response.message,
+      //     email: response.email,
+      //     status: response.status,
+      //   }),
+      //   transformErrorResponse: (response) => ({
+      //     status: response.status,
+      //     error: response.data,
+      //     message: response.data?.message,
+      //   }),
     }),
     // signupVerify: builder.mutation({
     //   query: (data) => ({
@@ -106,6 +123,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
 export const {
   useLoginMutation,
   useSignupMutation,
+  useCurrentQuery,
   //   useSignupVerifyMutation,
   //   useSocialAuthMutation,
   //   useLogoutMutation,
